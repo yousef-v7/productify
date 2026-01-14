@@ -41,6 +41,9 @@ export const comments = pgTable("comments", {
   createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
 });
 
+
+// ?---------------------------------- RELATIONS ---------------------------------- //
+
 // 🔴 Relations define how tables connect to each other. This enables Drizzle's query API
 // 🔴 to automatically join related data when using `with: { relationName: true }`
 
@@ -73,7 +76,7 @@ export const commentsRelations = relations(comments, ({ one }) => ({
   }), // One comment → one product
 }));
 
-// Type inference
+// ?Type inference
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 
