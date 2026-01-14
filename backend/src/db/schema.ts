@@ -23,7 +23,10 @@ export const products = pgTable("products", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
-  updatedAt: timestamp("updated_at", { mode: "date" }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "date" })
+    .notNull()
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
 export const comments = pgTable("comments", {
@@ -71,7 +74,7 @@ export const commentsRelations = relations(comments, ({ one }) => ({
 }));
 
 // Type inference
-export type User = typeof users.$inferSelect; 
+export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 
 export type Product = typeof products.$inferSelect;
