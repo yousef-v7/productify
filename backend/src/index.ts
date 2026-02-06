@@ -7,6 +7,7 @@ import apiRoutes from "./routes";
 const app = express();
 
 // Middleware 
+// credentials: true allow requests from frontend and send cookies (for auth)
 app.use(cors({ origin: ENV.FRONTEND_URL, credentials: true }));
 app.use(clerkMiddleware()); // auth obj will be attached to the req
 app.use(express.json()); // parses JSON request bodies.
