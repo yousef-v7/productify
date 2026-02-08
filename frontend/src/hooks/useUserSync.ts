@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { syncUser } from "../lib/api";
 
-// the best way to implement this is by using webhooks
+// the best way to implement this is by using webhooks on the backend
 function useUserSync() {
   const { isSignedIn } = useAuth();
   const { user } = useUser();
