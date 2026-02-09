@@ -72,7 +72,7 @@ function HomePage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.map((product) => (
+            {products.map((product: typeof products[0]) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
