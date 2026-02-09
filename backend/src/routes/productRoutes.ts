@@ -7,12 +7,12 @@ const router = Router();
 // GET /api/products => Get all products (public)
 router.get("/", productController.getAllProducts);
 
-// GET /api/products/:id - Get single product by ID (public)
-router.get("/:id", productController.getProductById);
-
 // GET /api/products/my - Get current user's products (protected)
 //? requireAuth() means user must be logged in to access this route
 router.get("/my", requireAuth(), productController.getMyProducts);
+
+// GET /api/products/:id - Get single product by ID (public)
+router.get("/:id", productController.getProductById);
 
 // POST /api/products - Create new product (protected)
 router.post("/", requireAuth(), productController.createProduct);

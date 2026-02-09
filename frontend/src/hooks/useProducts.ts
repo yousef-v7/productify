@@ -8,17 +8,22 @@ import {
   updateProduct,
 } from "../lib/api";
 
+///////////// instractions for react-query /////////////
+// ? useQuery: fetch data and cache it
+// ? useMutation: for create/update/delete operations
+// ? useQueryClient: to invalidate cache after mutations
+
 export const useProducts = () => {
   const result = useQuery({ queryKey: ["products"], queryFn: getAllProducts });
-  
+
   return result;
 };
 
-export const useProduct = (id) => {
+export const useProduct = (id: string) => {
   return useQuery({
     queryKey: ["product", id],
     queryFn: () => getProductById(id),
-    enabled: !!id,
+    enabled: !!id, // * (!!) -> double bang operator
   });
 };
 

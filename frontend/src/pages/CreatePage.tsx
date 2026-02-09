@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { useCreateProduct } from "../hooks/useProducts";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import {
   ArrowLeftIcon,
   FileTextIcon,
@@ -18,7 +18,7 @@ function CreatePage() {
     imageUrl: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createProduct.mutate(formData, { onSuccess: () => navigate("/") });
   };
@@ -74,7 +74,9 @@ function CreatePage() {
                   src={formData.imageUrl}
                   alt="Preview"
                   className="w-full h-40 object-cover"
-                  onError={(e) => (e.target.style.display = "none")}
+                  onError={(e) =>
+                    ((e.target as HTMLImageElement).style.display = "none")
+                  }
                 />
               </div>
             )}
